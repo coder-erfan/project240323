@@ -1,0 +1,108 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+@mixin setCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  @include setCenter();
+}
+.cardGroup {
+  @include setCenter();
+  position: relative;
+}
+$cardArray: (2, 3, 4, 5, 6);
+@mixin cardSetting($nth) {
+  position: absolute;
+  width: 20rem;
+  aspect-ratio: 1.3/1;
+  left: calc(50% + ($nth - 2) * 22rem);
+}
+.card {
+  transition: 0.5s;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  &:nth-child(1) {
+    width: 120rem;
+    min-width: 120rem;
+    aspect-ratio: 16/9;
+    transition: none;
+  }
+  @each $i in $cardArray {
+    &:nth-child(#{$i}) {
+      @include cardSetting(#{$i});
+    }
+    &:nth-child(n + 5){
+      opacity: 0;
+    }
+  }
+}
+
+// .card{
+// width: 20rem;
+// aspect-ratio: 2/3;
+// background-size: contain;
+// background-repeat: no-repeat;
+// background-position: center;
+// transition: 0.5s;
+// }
+// .card:nth-child(1){
+//   width: 120rem;
+//   min-width: 120rem;
+//   aspect-ratio: 16/9;
+//   transition: none;
+// }
+// .card:nth-child(2){
+//   position: absolute;
+//   left: calc(50%);
+// }
+// .card:nth-child(3){
+//   position: absolute;
+//   left: calc(50% + 22rem );
+// }
+// .card:nth-child(4){
+//   position: absolute;
+//   left: calc(50% + 22rem *2);
+// }
+// .card:nth-child(5){
+//   position: absolute;
+//   left: calc(50% + 22rem *3);
+//   opacity: 0.5;
+// }
+// .card:nth-child(6){
+//   position: absolute;
+//   left: calc(50% + 22rem *4);
+//   opacity: 0.5;
+// }
+
+.buttonGroup {
+  position: absolute;
+  @include setCenter();
+  bottom: 5rem;
+}
+.buttons {
+  border-radius: 50%;
+  box-shadow: 0 5px 15px black;
+  width: 4rem;
+  aspect-ratio: 1/1;
+  background-color: rgba(105, 100, 100, 0.375);
+  display: block;
+  margin: 20px;
+  @include setCenter();
+}
+.buttons:active {
+  box-shadow: none;
+}
